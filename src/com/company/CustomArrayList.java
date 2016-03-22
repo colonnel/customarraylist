@@ -1,76 +1,81 @@
 package com.company;
 
+import java.util.Arrays;
+
 /**
  * Created by Admin on 12.03.16.
  */
-public class CustomArrayList {
-    private int size = 6;
-    Persons personArr[] = new Persons[size];
+public class CustomArrayList<E> {
+    private static final int INITIAL_CAPACITY = 5;
+    Persons personArr[] = {};
+    private int size;
 
-    public Persons[] createArray() {
 
-        for (int i = 0; i < personArr.length; i++) {
-            personArr[i] = new Persons();
-        }
-        return personArr;
+    public CustomArrayList() {
+        personArr = new Persons[INITIAL_CAPACITY];
     }
+
+    //  public Persons[] createArray() {}
 
     //size - кол. элементов в листе
     public int sizeArray() {
-        int sizeArray = personArr.length;
-        return sizeArray;
+        size = personArr.length;
+        return size;
 
     }
 
     //clone - создает новый лист и записывает в него существующий
     public Persons[] cloneArray() {
-        Persons personArr2[] = new Persons[size];
+        Persons personArr2[] = new Persons[personArr.length];
         for (int i = 0; i < personArr2.length; i++) {
             personArr2[i] = personArr[i];
         }
         return personArr2;
     }
 
-    //contains - принимает объект, проверяет его наличие в листе и возвращает boolean
-    public boolean containsElementArray()
+    //contains - принимает объект, проверяет его наличие в листе
+    public void containsElementArray(Persons p) {
+        for (int i = 0; i < personArr.length; i++) {
+            if (personArr[i] == p) {
+                break;
+            }
+        }
 
-    {
     }
 
     //indexof - принимает объект, возвращает его индекс
-    public int getIndexElement(Persons) {
-        int index = 0;
-        for (int i = 0; i < personArr.length; i++) {
+    public int getIndexElement(Persons p) {
 
-            if (Persons == personArr[i]) {
+        int index;
+        for (index = 0; index < personArr.length; index++) {
+
+            if (personArr[index] == p) {
                 break;
-                index = i;
             }
+
+
         }
         return index;
-
     }
 
     //add - добавляет объект в лист
-    public boolean addElement()
+    public void addElement(Persons p) {
 
-    {
+        personArr[size++];
+    }
+
+    private void ensureCapacity() {
+        int newIncreasedCapacity = personArr.length * 2;
+        personArr = Arrays.copyOf(personArr, newIncreasedCapacity);
     }
 
     //clear - очищает лист от объектов
-    public boolean clearArray() {
+    public void clearArray() {
 
-        boolean value = false;
         for (int i = 0; i < personArr.length; i++) {
             personArr[i] = null;
         }
-        for (int i = 0; i < personArr.length; i++) {
-
-            if (personArr[i] == null) {
-                value = true;
-            }
-        }
-        return value;
+        size = 0;
     }
 
     //get - принимает индекс, возвращает объект
@@ -80,35 +85,37 @@ public class CustomArrayList {
 
     //isempty - возвращает boolean, проверяет пустой или нет
     public boolean isEmpty() {
-        boolean value = false;
-        for (int i = 0; i < personArr.length; i++) {
-            if (personArr[i] == null) {
-                value = true;
-            }
-        }
-        return value;
+
+        return size==0;
     }
 
     //remove - удаление по индексу
-    public boolean removeByIndex(int index) {
-        boolean sucsess = false;
-        personArr[index] = null;
-        if (personArr[index] == null) {
-            sucsess = true;
+    public Persons removeByIndex(int index) {
+        Persons removedPerson = personArr[index];
+        for (int i = index; i < size; i++) {
+            personArr[i] = personArr[i + 1];
         }
-        return sucsess;
+        size--;
+        return removedPerson;
     }
 
     //remove - удаление по объекту
-    public boolean removeByObject
-
-    {
+    public boolean removeByObject(Persons p)    {
+        for (int i = 0; i <personArr.length ; i++) {
+            if (p==personArr[i]){
+                personArr[i]=personArr[i+1];
+            }
+        }
+        size--;
+        return
     }
 
     //toarray - возвращает массив объектов
-    public boolean toArray
-
-    {
+    public void toArray() {
+        System.out.println("Display array:");
+        for (int i = 0; i < personArr.length; i++) {
+            System.out.println(personArr[i] + " ");
+        }
     }
 
 

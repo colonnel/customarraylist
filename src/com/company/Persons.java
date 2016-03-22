@@ -4,12 +4,12 @@ package com.company;
  * Created by Admin on 12.03.16.
  */
 public class Persons {
-    private String name;
-    private int age;
-    private String job;
+    private String name="Serg";
+    private int age=33;
+    private String job="Admin";
     //public String say ="Hello!";
 
-    Persons() {
+    public Persons() {
     }
 
 
