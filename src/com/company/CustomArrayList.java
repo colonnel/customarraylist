@@ -59,9 +59,11 @@ public class CustomArrayList<E> {
     }
 
     //add - добавляет объект в лист
-    public void addElement(Persons p) {
-
-        personArr[size++];
+    public void addElement(int index, Persons p) {
+        System.arraycopy(personArr, index, personArr, index + 1,
+                size - index);
+        personArr[index] = p;
+        size++;
     }
 
     private void ensureCapacity() {
@@ -100,15 +102,15 @@ public class CustomArrayList<E> {
     }
 
     //remove - удаление по объекту
-    public boolean removeByObject(Persons p)    {
+    public void removeByObject(Persons p)    {
         for (int i = 0; i <personArr.length ; i++) {
             if (p==personArr[i]){
                 personArr[i]=personArr[i+1];
             }
         }
         size--;
-        return
-    }
+        }
+    // TODO: 26.03.16 make return boolean 
 
     //toarray - возвращает массив объектов
     public void toArray() {
