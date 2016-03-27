@@ -1,124 +1,130 @@
 package com.company;
 
-import java.util.Arrays;
 
 /**
- * Created by Admin on 12.03.16.
+ * Created by Admin on 27.03.16.
  */
-public class CustomArrayList<E> {
+public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
     private static final int INITIAL_CAPACITY = 5;
-    Persons personArr[] = {};
+    Object personArr[] = {};
     private int size;
 
-
     public CustomArrayList() {
-        personArr = new Persons[INITIAL_CAPACITY];
+        personArr = new Object[INITIAL_CAPACITY];
     }
 
-    //  public Persons[] createArray() {}
-
-    //size - кол. элементов в листе
-    public int sizeArray() {
-        size = personArr.length;
-        return size;
-
-    }
-
-    //clone - создает новый лист и записывает в него существующий
-    public Persons[] cloneArray() {
-        Persons personArr2[] = new Persons[personArr.length];
-        for (int i = 0; i < personArr2.length; i++) {
-            personArr2[i] = personArr[i];
+    private boolean checkRange(int index) {
+        if (index < 0 || index > size) {
+            System.out.println("Index is out of range!");
+            System.out.println();
         }
+        return true;
+    }
+
+//    @Override
+//    public Object[] createArray() {
+//
+//        return new Object[INITIAL_CAPACITY];
+//    }
+
+
+
+    /**
+     * method return size of the array
+     */
+    @Override
+    public int sizeArray() {
+        System.out.println("Length of array is " + size);
+        return size = personArr.length;
+
+    }
+
+    /**
+     * method clones the array
+     * @return a clone of same array
+     */
+    @Override
+    public Object[] cloneArray() {
+        Object[] personArr2 = new Object[personArr.length];
+        for (int i = 0; i < personArr.length; i++) {
+            personArr[i] = personArr2[i];
+        }
+
+        System.out.println("Array was clone \n" +
+                "successfully");
         return personArr2;
     }
 
-    //contains - принимает объект, проверяет его наличие в листе
-    public void containsElementArray(Persons p) {
-        for (int i = 0; i < personArr.length; i++) {
-            if (personArr[i] == p) {
-                break;
-            }
+    /**
+     * method check
+     */
+
+    @Override
+    public void containsElementArray() {
+
+    }
+
+    /**
+     * method returns element on specific index.
+     */
+    @Override
+    public E containsElementArray(int index) {
+        if (!checkRange(index)) {
+            return (E) personArr[index];
         }
 
+
     }
 
-    //indexof - принимает объект, возвращает его индекс
-    public int getIndexElement(Persons p) {
-
-        int index;
-        for (index = 0; index < personArr.length; index++) {
-
-            if (personArr[index] == p) {
-                break;
-            }
-
-
-        }
-        return index;
+    @Override
+    public int getIndexElement() {
+        return 0;
     }
 
-    //add - добавляет объект в лист
-    public void addElement(int index, Persons p) {
-        System.arraycopy(personArr, index, personArr, index + 1,
-                size - index);
-        personArr[index] = p;
-        size++;
+    @Override
+    public void addElement() {
+
     }
 
-    private void ensureCapacity() {
-        int newIncreasedCapacity = personArr.length * 2;
-        personArr = Arrays.copyOf(personArr, newIncreasedCapacity);
+
+    @Override
+    public int getIndexElement(E e) {
+
+        return 0;
     }
 
-    //clear - очищает лист от объектов
+
+
+
+    @Override
+    public boolean addElement(E e) {
+
+        personArr[size++]=e;
+
+    }
+
+    @Override
     public void clearArray() {
 
-        for (int i = 0; i < personArr.length; i++) {
-            personArr[i] = null;
-        }
-        size = 0;
     }
 
-    //get - принимает индекс, возвращает объект
-    public Persons getObject(int index) {
-        return personArr[index];
+    @Override
+    public Object getObject() {
+        return null;
     }
 
-    //isempty - возвращает boolean, проверяет пустой или нет
-    public boolean isEmpty() {
-
-        return size==0;
+    @Override
+    public Object removeByIndex() {
+        return null;
     }
 
-    //remove - удаление по индексу
-    public Persons removeByIndex(int index) {
-        Persons removedPerson = personArr[index];
-        for (int i = index; i < size; i++) {
-            personArr[i] = personArr[i + 1];
-        }
-        size--;
-        return removedPerson;
+    @Override
+    public boolean removeByObject() {
+        return false;
     }
 
-    //remove - удаление по объекту
-    public void removeByObject(Persons p)    {
-        for (int i = 0; i <personArr.length ; i++) {
-            if (p==personArr[i]){
-                personArr[i]=personArr[i+1];
-            }
-        }
-        size--;
-        }
-    // TODO: 26.03.16 make return boolean 
+    @Override
+    public void displayArray() {
 
-    //toarray - возвращает массив объектов
-    public void toArray() {
-        System.out.println("Display array:");
-        for (int i = 0; i < personArr.length; i++) {
-            System.out.println(personArr[i] + " ");
-        }
     }
-
-
 }
