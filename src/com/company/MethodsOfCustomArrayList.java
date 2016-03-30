@@ -5,21 +5,29 @@ package com.company;
  */
 public interface MethodsOfCustomArrayList<E> {
 
-    Object[] createArray();
     int sizeArray();
-    Object[] cloneArray();
-    void containsElementArray();
 
-    E containsElementArray(int index);
+    CustomArrayList cloneArray();
 
-    int getIndexElement();
-    void addElement();
+    boolean containsElementArray(E o);
 
+    Object containsElementArray(int index);
 
+    int getIndexElement(E o);
+
+    void addElement(E o);
 
     void clearArray();
-    Object getObject();
-    Object removeByIndex();
-    boolean removeByObject();
+
+    Object getObject(int index);
+
+    boolean isEmpty();
+
+    Object removeByIndex(int index);
+
+    boolean removeByObject(E o);
+
+    E[] toArray();
+
     void displayArray();
 }

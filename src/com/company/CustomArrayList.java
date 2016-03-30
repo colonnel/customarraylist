@@ -1,6 +1,8 @@
 package com.company;
 
 
+import java.util.Arrays;
+
 /**
  * Created by Admin on 27.03.16.
  */
@@ -9,122 +11,230 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
     Object personArr[] = {};
     private int size;
 
+    /**
+     * Constructor
+     */
     public CustomArrayList() {
         personArr = new Object[INITIAL_CAPACITY];
     }
 
-    private boolean checkRange(int index) {
-        if (index < 0 || index > size) {
-            System.out.println("Index is out of range!");
-            System.out.println();
-        }
-        return true;
-    }
-
-//    @Override
-//    public Object[] createArray() {
-//
-//        return new Object[INITIAL_CAPACITY];
-//    }
-
-
-
     /**
-     * method return size of the array
+     * Method
+     *
+     * @return size of array
      */
     @Override
     public int sizeArray() {
-        System.out.println("Length of array is " + size);
-        return size = personArr.length;
-
+        int size = personArr.length;
+        System.out.println("Size");
+        return size;
     }
 
     /**
-     * method clones the array
-     * @return a clone of same array
+     * Method clones array
+     *
+     * @return new array
      */
     @Override
-    public Object[] cloneArray() {
-        Object[] personArr2 = new Object[personArr.length];
-        for (int i = 0; i < personArr.length; i++) {
-            personArr[i] = personArr2[i];
+    public CustomArrayList cloneArray() {
+        CustomArrayList<E> customList = new CustomArrayList<E>();
+        Object copyList[] = new Object[size];
+        for (int i = 0; i < size; i++) {
+            copyList[i] = personArr[i];
+            customList.addElement((E) copyList[i]);
         }
-
-        System.out.println("Array was clone \n" +
-                "successfully");
-        return personArr2;
-    }
-
-    /**
-     * method check
-     */
-
-    @Override
-    public void containsElementArray() {
+        return customList;
 
     }
 
     /**
-     * method returns element on specific index.
+     * Method checks containes the presence of the object in array
+     *
+     * @param o
+     * @return boolean
      */
     @Override
-    public E containsElementArray(int index) {
-        if (!checkRange(index)) {
-            return (E) personArr[index];
+    public boolean containsElementArray(E o) {
+        for (int i = 0; i < size; i++) {
+            if (o.equals(personArr[i])) {
+                System.out.println("Object" + personArr[i] + "was found");
+                return true;
+            }
         }
-
-
-    }
-
-    @Override
-    public int getIndexElement() {
-        return 0;
-    }
-
-    @Override
-    public void addElement() {
-
-    }
-
-
-    @Override
-    public int getIndexElement(E e) {
-
-        return 0;
-    }
-
-
-
-
-    @Override
-    public boolean addElement(E e) {
-
-        personArr[size++]=e;
-
-    }
-
-    @Override
-    public void clearArray() {
-
-    }
-
-    @Override
-    public Object getObject() {
-        return null;
-    }
-
-    @Override
-    public Object removeByIndex() {
-        return null;
-    }
-
-    @Override
-    public boolean removeByObject() {
+        System.out.println("Object was not found");
         return false;
     }
 
+
+    /**
+     * Method checks containes the presence of the object in array
+     *
+     * @param index
+     * @return object
+     */
     @Override
-    public void displayArray() {
+    public E containsElementArray(int index) {
+        if (index >= 0 && index < size) {
+            System.out.print("The object with index" + " " + index + ":" + " ");
+            return (E) personArr[index];
+        }
+        System.out.println("The object with index" + " " + index + " " + "was not found");
+        return null;
 
     }
+
+    /**
+     * Method gets index of object in array
+     *
+     * @param o
+     * @return index
+     */
+    @Override
+    public int getIndexElement(E o) {
+        for (int i = 0; i < size; i++) {
+            if (o.equals(personArr[i])) {
+                System.out.println("Index of the" + o + "is: " + i);
+                return i;
+            }
+        }
+        System.out.println("Object was not found!");
+        return -1;
+    }
+
+
+    /**
+     * Method ads object to array
+     *
+     * @param o
+     */
+    @Override
+    public void addElement(E o) {
+        if (size == personArr.length) {
+            sizeDoubling();
+        }
+        personArr[size++] = o;
+
+    }
+
+    private void sizeDoubling() {
+        int newIncreasedSize = personArr.length * 2;
+        personArr = Arrays.copyOf(personArr, newIncreasedSize);
+    }
+
+    /**
+     * Method clears array
+     */
+    @Override
+    public void clearArray() {
+        size = 0;
+        personArr = new Object[size];
+    }
+
+    /**
+     * Method gets the object of array
+     *
+     * @param index
+     * @return object
+     */
+    @Override
+    public E getObject(int index) {
+        if (index >= 0 && index < size) {
+            System.out.print("The object with index" + " " + index + ":" + " ");
+            return (E) personArr[index];
+        }
+        System.out.println("The object with index" + " " + index + " " + "was not found");
+        return null;
+    }
+
+    /**
+     * Method checks the array is empty or not
+     *
+     * @return
+     */
+    @Override
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    /**
+     * Method removes object from array
+     *
+     * @param index
+     * @return object
+     */
+    @Override
+    public Object removeByIndex(int index) {
+
+        if (index >= 0 && index < size) {
+            Object delObject = personArr[index];
+            for (int i = index; i < size; i++) {
+                personArr[i] = personArr[i + 1];
+            }
+            size--;
+            System.out.println("Object" + delObject + "was removed");
+            return delObject;
+        }
+        System.out.println("Incorrect index");
+        return false;
+
+    }
+
+    /**
+     * Method removes object from array
+     *
+     * @param o
+     * @return boolean
+     */
+    @Override
+    public boolean removeByObject(E o) {
+        for (int i = 0; i <size ; i++) {
+            if (o.equals(personArr[i])) {
+                int index = i;
+                for (int j = index; j < size; j++) {
+                    personArr[j] = personArr[j + 1];
+                }
+                System.out.println("Object:" +o+"was removed");
+                size--;
+                return true;
+            }
+        }
+        System.out.println("Object was not found!");
+        return false;
+    }
+
+    /**
+     * Method
+     *
+     * @return array
+     */
+    @Override
+    public E[] toArray() {
+        Object arr[] = new Object[size];
+        for (int i = 0; i < size; i++) {
+            arr[i] = personArr[i];
+        }
+        return (E[]) arr;
+    }
+
+    /**
+     * Method displays array in console
+     */
+    @Override
+    public void displayArray() {
+        System.out.print("Display list : ");
+        if (size == 0) {
+            System.out.println("List is empty");
+        } else {
+            for (int i = 0; i < size; i++) {
+                System.out.print(personArr[i] + " ");
+            }
+            System.out.println();
+        }
+
+    }
+
+
+
+
 }
+
