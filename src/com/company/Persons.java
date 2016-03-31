@@ -9,8 +9,11 @@ public class Persons {
     private String job="Admin";
     //public String say ="Hello!";
 
-    public Persons() {
-    }
+    public Persons(String name, int age, String job) {
+        this.name=name;
+        this.age=age;
+        this.job=job;
+            }
 
 
     public void setName(String name) {

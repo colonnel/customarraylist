@@ -26,7 +26,7 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
     @Override
     public int sizeArray() {
         int size = personArr.length;
-        System.out.println("Size");
+        System.out.print("Size is: ");
         return size;
     }
 
@@ -93,7 +93,7 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
     public int getIndexElement(E o) {
         for (int i = 0; i < size; i++) {
             if (o.equals(personArr[i])) {
-                System.out.println("Index of the" + o + "is: " + i);
+                System.out.print("Index of the " + o + "is: ");
                 return i;
             }
         }
@@ -221,12 +221,12 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
      */
     @Override
     public void displayArray() {
-        System.out.print("Display list : ");
+        System.out.print("Display list : "+"\n");
         if (size == 0) {
             System.out.println("List is empty");
         } else {
             for (int i = 0; i < size; i++) {
-                System.out.print(personArr[i] + " ");
+                System.out.println(personArr[i] + " ");
             }
             System.out.println();
         }
