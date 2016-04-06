@@ -138,6 +138,8 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
      */
     @Override
     public E getObject(int index) {
+
+
         if (index >= 0 && index < size) {
             System.out.print("The object with index" + " " + index + ":" + " ");
             return (E) personArr[index];
@@ -167,14 +169,14 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
 
         if (index >= 0 && index < size) {
             Object delObject = personArr[index];
-            for (int i = index; i < size; i++) {
-                personArr[i] = personArr[i + 1];
+            for (int j = index; j < size - 1; j++) {
+                personArr[j] = personArr[j + 1];
             }
             size--;
             System.out.println("Object" + delObject + "was removed");
             return delObject;
         }
-        System.out.println("Incorrect index");
+        System.out.println("Incorrect index!");
         return false;
 
     }
@@ -187,13 +189,14 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
      */
     @Override
     public boolean removeByObject(E o) {
-        for (int i = 0; i <size ; i++) {
+
+        for (int i = 0; i < size; i++) {
             if (o.equals(personArr[i])) {
                 int index = i;
-                for (int j = index; j < size; j++) {
+                for (int j = index; j < size - 1; j++) {
                     personArr[j] = personArr[j + 1];
                 }
-                System.out.println("Object:" +o+"was removed");
+                System.out.println("Object:" + o + "was removed");
                 size--;
                 return true;
             }
@@ -221,7 +224,7 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
      */
     @Override
     public void displayArray() {
-        System.out.print("Display list : "+"\n");
+        System.out.print("Display list : " + "\n");
         if (size == 0) {
             System.out.println("List is empty");
         } else {
@@ -232,8 +235,6 @@ public class CustomArrayList<E> implements MethodsOfCustomArrayList<E> {
         }
 
     }
-
-
 
 
 }

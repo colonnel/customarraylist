@@ -26,7 +26,7 @@ public class Main {
         System.out.println(myList.sizeArray());
         System.out.println();
 
-        //2.0Display list
+        //2.Display list
         System.out.println("=====Display elements of array=====");
         myList.displayArray();
         System.out.println();
@@ -54,8 +54,8 @@ public class Main {
         System.out.println("=====Remove element by index=====");
         System.out.println("Incorrect value:");
         System.out.println(myList.removeByIndex(7));
-//        System.out.println("Correct value:");
-//        System.out.println(myList.removeByIndex(2));
+        System.out.println("Correct value:");
+        System.out.println(myList.removeByIndex(0));
         System.out.println();
 
         //7. Remove by object
@@ -64,6 +64,32 @@ public class Main {
         System.out.println(myList.removeByObject(person4));
         System.out.println();
 
+        //8. Clone array
+        System.out.println("=====Clone array=====");
+        System.out.println(myList.cloneArray());
+        System.out.println();
+
+        //9.  Contains element by index
+        System.out.println("=====Contains element by index=====");
+        System.out.println(myList.containsElementArray(2));
+        System.out.println();
+
+        //10.  Contains element by object
+        System.out.println("=====Contains element by object=====");
+        System.out.println(myList.containsElementArray(person5));
+        System.out.println();
+
+
+
+        //11. To array
+        System.out.println("=====To array=====");
+        System.out.println(myList.toArray());
+        System.out.println();
+
+        //12.  Clear array
+        System.out.println("=====Clear array=====");
+        myList.clearArray();
+        System.out.println();
 
     }
 
